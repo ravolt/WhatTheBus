@@ -1,0 +1,12 @@
+What The Bus project
+
+Started 1/17/2010 by Rob Hirschfeld (rob@zehicle.com)
+
+For updates and history visit http://robhirschfeld.wordpress.com 
+
+Prereqs:
+* MemCacheD (OS X install http://memcached.darwinports.com/)
+
+Rails Libraries
+* Cucumber - for testing
+* MemCacheD - for cache store & scale
