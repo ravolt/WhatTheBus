@@ -1,0 +1,2 @@
+module BusHelper
+end

@@ -1,5 +1,5 @@
 When /^bus named "([^\"]*)" in the "([^\"]*)" district with a id of "([^\"]*)" goes to "([^\"]*),([^\"]*)"$/ do |name, district, id, lat, lng|
-  visit "/feed/at?name=#{name}&district=#{district}&id=#{id}&ll=#{lat},#{lng}"
+  visit "/bus/at/#{id}?name=#{name}&district=#{district}&ll=#{lat},#{lng}"
 end
 
 Then /^json has an object called "([^\"]*)"$/ do |object|

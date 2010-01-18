@@ -7,4 +7,15 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  private
+
+  def cache(key)
+    unless output = CACHE.get(key)
+      output = yield
+      CACHE.set(key, output, 1.hour)
+    end
+    return output
+  end
+
 end
