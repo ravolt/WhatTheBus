@@ -1,4 +1,18 @@
-== Welcome to Rails
+== WhatTheBus Specific Details
+
+If you're not familiar with Rails, please read the standard welcome below.
+
+This application uses Cucumber for testing.  You must install the following gems:
+  sudo gem install rspec rspec-rails cucumber webrat
+  sudo gem install cucumber-rails
+  gem sources -a http://gems.github.com
+  sudo gem install brynary-webrat
+  gem install term-ansicolor treetop diff-lcs nokogiri
+  
+see: http://www.ultrasaurus.com/sarahblog/2008/12/rails-2-day-3-behavior-driven-development/#install
+
+
+== Standard Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create 
 database-backed web applications according to the Model-View-Control pattern. 
