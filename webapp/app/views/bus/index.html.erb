@@ -1,0 +1,9 @@
+<div class="bus" id="<%= "TODO" %>">
+  <dl>
+    <dt>District:</dt><dd><%= "TODO" %></dd>
+    <dt>Bus:</dt><dd><%= "TODO" %></dd>
+    <% unless @data.nil? %>
+      <dt>Position:</dt><dd><%= "#{@data[0]},#{@data[1]}" %></dd>
+    <% end %>
+  </dl>
+</div>

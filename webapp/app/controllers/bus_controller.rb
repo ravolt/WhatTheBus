@@ -9,12 +9,28 @@ class BusController < ApplicationController
   
   def index
     
-    data = Rails.cache.read(params[:id], :raw => true).split(',')
-    if data.nil?
+    begin
+      
+      # get data from cache
+      @data = Rails.cache.read(params[:id], :raw => true).split(',')
+      
+      if @data.nil?
+        render :nothing => true
+      else
+        respond_to do |format|
+          format.json {
+            render :json => {:buses => { params[:id].to_sym => { :lat => @data[0], :lng => @data[1] } } }
+          }
+          format.html { 
+            #default
+          }
+        end
+      end
+        
+    rescue
+      logger.error { "Could not retrieve #{params[:id]} from MemCache.  Check to make sure Cache service is available." }
       render :nothing => true
-    else
-      render :json => {:buses => { params[:id].to_sym => { :lat => data[0], :lng => data[1] } } }
-     end
+    end
      
   end
 

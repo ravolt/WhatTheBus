@@ -1,0 +1,16 @@
+div.footer {
+	position: absolute;
+	bottom: 20px;
+	height: 20px;
+	font-size: small;
+}
+
+dl { 
+	padding: 3px;
+}
+dl dt { 
+	float: left; clear: left; font-weight: bold; width: 190px; text-align:right; padding: 3px;
+}
+dl dd { 
+	margin-left: 200px; padding: 3px;
+}

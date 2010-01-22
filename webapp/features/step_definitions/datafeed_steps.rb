@@ -2,6 +2,10 @@ When /^bus named "([^\"]*)" in the "([^\"]*)" district with a id of "([^\"]*)" g
   visit "/bus/at/#{id}?name=#{name}&district=#{district}&lat=#{lat}&lng=#{lng}"
 end
 
+When /^bus with a id of "([^\"]*)" goes to "([^\"]*),([^\"]*)"$/ do |id, lat, lng|
+  visit "/bus/at/#{id}?lat=#{lat}&lng=#{lng}"
+end
+
 Then /^json has an object called "([^\"]*)"$/ do |object|
   result = JSON.parse response.body
   raise "json result missing #{object} from #{result.inspect}" unless result.has_key? object
@@ -13,4 +17,3 @@ Then /^json has a record "([^\"]*)" in "([^\"]*)" with "([^\"]*)" value "([^\"]*
   found = true if result[object][id][item] == value
   raise "did not find #{item}=#{value} in #{result[object].inspect}." unless found
 end
-
