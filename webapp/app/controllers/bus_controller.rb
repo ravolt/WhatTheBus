@@ -10,7 +10,6 @@ class BusController < ApplicationController
   def index
     
     data = Rails.cache.read(params[:id], :raw => true).split(',')
-puts data.inspect
     if data.nil?
       render :nothing => true
     else

@@ -11,6 +11,9 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
       
+    when /the bus "(.*)" json page/
+      "/bus/index/#{$1}.json"
+
     when /the bus "(.*)" page/
       "/bus/index/#{$1}"
     
