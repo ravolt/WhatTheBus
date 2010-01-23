@@ -53,3 +53,15 @@ Feature: Mobile Access
     Then I should see "elephant"
       And I should see "houston"
       And I should not see "eanes"
+
+  Scenario: Update to bus already in DB
+    Given bus named "monkey" in the "eanes" district with a id of "qq34"
+    When I go to the bus "qq34" page
+    Then I should see "monkey"
+      And I should see "eanes"
+      And I should see "qq34"
+      And I should see "unknown"
+    Then bus with a id of "qq34" goes to "31,-96"
+      And I go to the bus "qq34" page
+      And I should see "31,-96"
+    

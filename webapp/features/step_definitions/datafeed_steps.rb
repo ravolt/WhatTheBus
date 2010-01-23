@@ -17,3 +17,10 @@ Then /^json has a record "([^\"]*)" in "([^\"]*)" with "([^\"]*)" value "([^\"]*
   found = true if result[object][id][item] == value
   raise "did not find #{item}=#{value} in #{result[object].inspect}." unless found
 end
+
+Given /^bus named "([^\"]*)" in the "([^\"]*)" district with a id of "([^\"]*)"$/ do |name, district, xref|
+  district = District.find_or_create_by_name district
+  bus = Bus.find_or_create_by_xref :name => name, :district_id => district.id, :xref => xref
+  raise "did not create bus #{name}" if bus.nil?
+  raise "did not set bus data" unless bus.name == name
+end
