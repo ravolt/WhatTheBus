@@ -42,7 +42,7 @@ Feature: Mobile Access
     Then I should see "lion"
       And I should not see "giraffe"
 
-  Scenario: Multiple Buses (differnt district)
+  Scenario: Multiple Buses (different district)
     When bus named "giraffe" in the "eanes" district with a id of "6789" goes to "33,-98"
     When bus named "elephant" in the "houston" district with a id of "1234" goes to "32,-97"
     When I go to the bus "6789" page
@@ -50,6 +50,6 @@ Feature: Mobile Access
       And I should see "eanes"
       And I should not see "houston"
     When I go to the bus "1234" page
-    Then I should see "lion"
+    Then I should see "elephant"
       And I should see "houston"
       And I should not see "eanes"

@@ -1,9 +1,13 @@
-<div class="bus" id="<%= "TODO" %>">
+<div class="bus" id="<%= @bus.id %>">
   <dl>
-    <dt>District:</dt><dd><%= "TODO" %></dd>
-    <dt>Bus:</dt><dd><%= "TODO" %></dd>
+    <dt>District:</dt><dd><%= h @bus.district.name %></dd>
+    <dt>Bus:</dt><dd><%= h @bus.name %></dd>
+    <dt>Bus ID:</dt><dd><%= h @bus.xref %></dd>
+    <dt>Position:</dt>
     <% unless @data.nil? %>
-      <dt>Position:</dt><dd><%= "#{@data[0]},#{@data[1]}" %></dd>
+      <dd><%= "#{@data[0]},#{@data[1]}" %></dd>
+    <% else %>
+      <dd>unknown</dd>
     <% end %>
   </dl>
 </div>
