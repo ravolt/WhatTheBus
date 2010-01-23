@@ -1,9 +1,9 @@
 When /^bus named "([^\"]*)" in the "([^\"]*)" district with a id of "([^\"]*)" goes to "([^\"]*),([^\"]*)"$/ do |name, district, id, lat, lng|
-  visit "/bus/at/#{id}?name=#{name}&district=#{district}&lat=#{lat}&lng=#{lng}"
+  visit "/feed/bus/#{id}?name=#{name}&district=#{district}&lat=#{lat}&lng=#{lng}"
 end
 
 When /^bus with a id of "([^\"]*)" goes to "([^\"]*),([^\"]*)"$/ do |id, lat, lng|
-  visit "/bus/at/#{id}?lat=#{lat}&lng=#{lng}"
+  visit "/feed/bus/#{id}?lat=#{lat}&lng=#{lng}"
 end
 
 Then /^json has an object called "([^\"]*)"$/ do |object|
