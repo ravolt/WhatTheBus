@@ -9,36 +9,37 @@ namespace :sim do
     args.with_defaults :items => 10
   
     url = URI.parse("http://#{args[:url_base]}/feed/bus")
-    req = Net::HTTP::Post.new(url.path)
     bus = []
     args[:items].downto 0 do |i|
-      post = { :id => "xref_#{i}",  :name => "bus #{i}", :district => "simulator", :lat => 30.2+(i/100), :lng => -97.7+(i/100) }
+      post = { :id => "xref_#{i}",  :name => "bus #{i}", :district => "simulator", :lat => (30.200+(i.to_f/100)), :lng => (-97.700+(i.to_f/100)) }
+      req = Net::HTTP::Post.new(url.path)
       req.set_form_data(post, ';')
 	    res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
 	    case res
   	    when Net::HTTPSuccess, Net::HTTPRedirection
-  	      puts "SUCCESS #{i} simulated create " + res.body
+  	      puts "SUCCESS #{i} simulated create #{res.body} using #{post.to_s}" 
   	    else
-  	      raise "FAILED #{i} simulated create " + post.inspect
+  	      raise "FAILED #{i} simulated create #{post}"
 	    end
       bus << post
     end
     
-    1.upto(500) do |i|
+    1.upto(5000) do |i|
       
+        req = Net::HTTP::Post.new(url.path)
 	      req.set_form_data(bus[i%bus.count], ';')
   	    res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
 	    
   	    case res
     	    when Net::HTTPSuccess, Net::HTTPRedirection
-    	      puts "SUCCESS #{i} simulated update " + res.body
+    	      puts "SUCCESS #{i} simulated update #{bus[i%bus.count].to_s}"
     	    else
     	      raise "FAILED #{i} simulated update " + bus.inspect
-  	    end
+	      end
     
         bus[i%bus.count][:lat] += rand/100 - 0.005
         bus[i%bus.count][:lng] += rand/100 - 0.005
-        sleep 5
+        sleep 1
       
     end
     

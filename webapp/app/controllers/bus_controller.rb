@@ -1,5 +1,7 @@
 class BusController < ApplicationController
 
+  before_filter :make_id
+
   def index
     
     begin      
@@ -11,6 +13,8 @@ class BusController < ApplicationController
     end
 
     @bus = Bus.find_by_xref params[:id]
+    puts Bus.count
+    
     raise "Could not find bus '#{params[:id]}'." unless @bus
 
     @data = cache.split(',') if cache
@@ -29,5 +33,21 @@ class BusController < ApplicationController
     end        
      
   end
+  
+  private 
+  
+  # make sure that we have some id
+  def make_id
+    
+    unless params.has_key? :id
+      if params.has_key?(:name) && params.has_key?(:district)
+        params[:id] = "#{params[:district]}_#{params[:name]}"
+      else
+        raise "id or district+name are required inputs"
+      end
+    end
+    
+  end
+  
 
 end
