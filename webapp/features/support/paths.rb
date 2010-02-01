@@ -17,6 +17,12 @@ module NavigationHelpers
     when /the bus "(.*)" page/
       "/bus/index/#{$1}"
     
+    when /the map index page/
+      "/map"
+
+    when /the map for "(.*)"/
+      "/map/bus/#{$1}"
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

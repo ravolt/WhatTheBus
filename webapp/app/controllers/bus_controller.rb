@@ -12,9 +12,7 @@ class BusController < ApplicationController
       return
     end
 
-    @bus = Bus.find_by_xref params[:id]
-    puts Bus.count
-    
+    @bus = Bus.find_by_xref params[:id]    
     raise "Could not find bus '#{params[:id]}'." unless @bus
 
     @data = cache.split(',') if cache

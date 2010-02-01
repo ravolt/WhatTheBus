@@ -26,3 +26,7 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+MAP_KEY="ABQIAAAANfpttRuSeXDjSICP4WVw7RTJQa0g3IQ9GZqIMmInSLzwtGDKaBSYLqxAciNsaup_rbAUk0hix_Olhg"
+MAP_UPDATE_SECS = 30
+

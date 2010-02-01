@@ -15,3 +15,7 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+MAP_KEY="ABQIAAAANfpttRuSeXDjSICP4WVw7RTJQa0g3IQ9GZqIMmInSLzwtGDKaBSYLqxAciNsaup_rbAUk0hix_Olhg"
+MAP_UPDATE_SECS = 15
+
