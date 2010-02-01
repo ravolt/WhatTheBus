@@ -7,7 +7,7 @@ class FeedController < ApplicationController
   def bus
 
     cache = Rails.cache.read params[:id], :raw => true
-    data = "#{params[:lat]},#{params[:lng]}"
+    data = "#{params[:lat].strip},#{params[:lng].strip}"
     
     logger.debug { "cache for '#{params[:id]}' was '#{cache}' will be '#{data}'" }
   

@@ -1,0 +1,7 @@
+<% pos = @bus.position %>
+<div class="maps">
+  <h2 class="map">Live Map for <%= link_to "#{sanitize @bus.district.name}", :controller => "map", :action => "index", :id => @bus.district.id %> <%= sanitize @bus.name  %></h2>
+  <div class="map">
+    Generating map for bus at <%= pos.nil? ? "unknown" : pos %>
+  </div>
+</div>

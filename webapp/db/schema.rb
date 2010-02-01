@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100122190347) do
+ActiveRecord::Schema.define(:version => 20100201134322) do
 
   create_table "buses", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20100122190347) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "buses", ["xref"], :name => "index_buses_on_xref", :unique => true
 
   create_table "districts", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,17 @@
+<div class="district_list">
+  <h2>Districts (<%= link_to "show all", :controller => "map", :action => "index", :id => nil  %>)</h2>
+  <ul class="districts">
+    <% @districts.each do |district| %>
+      <li id="<%= district.id %>">
+        <%= link_to "#{sanitize district.name}", :controller => "map", :action => "index", :id => district.id %>
+        <ul class="district">
+          <% district.buses.each do |bus| %>
+            <li id="<%= bus.id %>">
+              <%= link_to "#{sanitize bus.name}: #{bus.active ? 'active' : 'no update'}", :controller => "map", :action => "bus", :id => bus.xref %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>
