@@ -12,17 +12,23 @@ class BusController < ApplicationController
       return
     end
 
-    @bus = Bus.find_by_xref params[:id]    
-    raise "Could not find bus '#{params[:id]}'." unless @bus
-
+    unless params.has_key? :cache
+      @bus = Bus.find_by_xref params[:id] 
+      raise "Could not find bus '#{params[:id]}'." unless @bus
+    end
+    
     @data = cache.split(',') if cache
     
     respond_to do |format|
       format.json {
         if @data.nil?
           render :nothing => true
-        else          
-          render :json => {:buses => { params[:id].to_sym => { :lat => @data[0], :lng => @data[1], :name => @bus.name, :district => @bus.district.name,   } } }
+        else
+          if @bus.nil?
+            render :json => {:buses => { params[:id].to_sym => { :lat => @data[0], :lng => @data[1]  } } }
+          else
+            render :json => {:buses => { params[:id].to_sym => { :lat => @data[0], :lng => @data[1], :name => @bus.name, :district => @bus.district.name   } } }
+          end
         end
       }
       format.html { 

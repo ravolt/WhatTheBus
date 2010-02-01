@@ -1,7 +1,33 @@
 <% pos = @bus.position %>
-<div class="maps">
-  <h2 class="map">Live Map for <%= link_to "#{sanitize @bus.district.name}", :controller => "map", :action => "index", :id => @bus.district.id %> <%= sanitize @bus.name  %></h2>
-  <div class="map">
-    Generating map for bus at <%= pos.nil? ? "unknown" : pos %>
+
+<script type="text/javascript">
+	var map;
+  var centerMarker;
+  var xref = '<%= @bus.xref %>';
+  var name = '<%= @bus.name %>';  
+  
+	function initMap() {
+    window.setInterval('updateMap();', <%= MAP_UPDATE_SECS %>000);
+    updateMap();
+	}
+	
+	function updateMap() {
+	  jQuery("#ll").text("?,?");
+
+    // get the data for the map
+	  jQuery.getJSON("/bus/index/"+ xref +".json?cache", {}, function(data){
+      
+//      {"buses":{"xref_8":{"district":"simulator","lat":"30.2803311393799","lng":"-97.6254465607849","name":"bus 8"}}}
+      jQuery("#ll").text(data.buses[xref].lat + ',' + data.buses[xref].lng);
+		}); 
+	}
+</script>
+
+<body onload='initMap();'>
+  <div class="maps">
+    <h2 class="map">Live Map for <%= link_to "#{sanitize @bus.district.name}", :controller => "map", :action => "index", :id => @bus.district.id %> <%= sanitize @bus.name  %></h2>
+    <div class="map">
+      Generating map for bus at <span id="ll"><%= pos.nil? ? "unknown" : pos %></span>
+    </div>
   </div>
-</div>
+</body>
