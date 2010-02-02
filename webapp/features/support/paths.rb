@@ -14,6 +14,9 @@ module NavigationHelpers
     when /the bus "(.*)" json page/
       "/bus/index/#{$1}.json"
 
+    when /the bus "(.*)" json cache page/
+      "/bus/index/#{$1}.json?cache"
+
     when /the bus "(.*)" page/
       "/bus/index/#{$1}"
     
