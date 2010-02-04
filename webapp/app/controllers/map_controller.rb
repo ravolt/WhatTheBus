@@ -13,8 +13,9 @@ class MapController < ApplicationController
   def bus
     
     @bus = Bus.find_by_xref params[:id]
+    @pos = @bus.position
     redirect_to :action => :index if @bus.nil?
-    redirect_to :action => :index, :id => @bus.district_id if !@bus.active
+    redirect_to :action => :index, :id => @bus.district_id if @pos.nil?
     
   end
 

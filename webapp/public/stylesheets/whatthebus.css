@@ -14,3 +14,10 @@ dl dt {
 dl dd { 
 	margin-left: 200px; padding: 3px;
 }
+
+div#live_map {
+  	z-index: 2;
+    border: 1px solid #666;
+    border-style: ridge;
+    width: 50%; height: 600px;
+}
