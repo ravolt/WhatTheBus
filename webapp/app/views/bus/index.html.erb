@@ -1,11 +1,11 @@
 <div class="bus" id="<%= @bus.id %>">
   <dl>
-    <dt>District:</dt><dd><%= h @bus.district.name %></dd>
+    <dt>District:</dt><dd><%= link_to h(@bus.district.name), :controller => "map", :action => "index", :id => @bus.district_id %></dd>
     <dt>Bus:</dt><dd><%= h @bus.name %></dd>
     <dt>Bus ID:</dt><dd><%= h @bus.xref %></dd>
     <dt>Position:</dt>
     <% unless @data.nil? %>
-      <dd><%= "#{@data[0]},#{@data[1]}" %></dd>
+      <dd><%= "#{@data[0]},#{@data[1]}" %> (<%= link_to "show map", :controller => "map", :action => "bus", :id => @bus.xref %>)</dd>
     <% else %>
       <dd>unknown</dd>
     <% end %>
